@@ -21,10 +21,15 @@ export default function SampleItinerary() {
     {
       title: 'City Tour',
       description: 'Guided highlights tour',
-      image: 'https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80',
       icon: '🏙️'
     }
   ]
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const target = e.target as HTMLImageElement
+    target.src = 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80'
+  }
 
   return (
     <section className="sample-itinerary" aria-label="Itinerary">
@@ -37,7 +42,7 @@ export default function SampleItinerary() {
         {itinerary.map((item, index) => (
           <div key={index} className="itinerary-card" role="listitem">
             <div className="itinerary-image">
-              <img src={item.image} alt={item.title} />
+              <img src={item.image} alt={item.title} onError={handleImageError} />
               <div className="itinerary-overlay">
                 <span className="itinerary-icon">{item.icon}</span>
               </div>

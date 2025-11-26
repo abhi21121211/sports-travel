@@ -1,9 +1,14 @@
+import { useState } from 'react'
+
 export default function Hero() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
+    setMobileMenuOpen(false) // Close menu after clicking
   }
 
   const handlePlanTrip = () => {
@@ -12,6 +17,10 @@ export default function Hero() {
 
   const handleWhatsApp = () => {
     window.open('https://wa.me/1234567890?text=Hi, I would like to inquire about sports travel packages', '_blank')
+  }
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen)
   }
 
   return (
@@ -25,12 +34,41 @@ export default function Hero() {
             <span style={{fontWeight:800}}>SPORTS</span>
           </div>
 
-          <nav className="nav" aria-label="top navigation">
+          {/* Mobile Menu Button */}
+          <button 
+            className="mobile-menu-btn" 
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+              </svg>
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+              </svg>
+            )}
+          </button>
+
+          {/* Desktop Navigation */}
+          <nav className="nav desktop-nav" aria-label="top navigation">
             <span style={{cursor: 'pointer'}} onClick={() => scrollToSection('packages')}>Trips</span>
             <span style={{cursor: 'pointer'}} onClick={() => scrollToSection('itinerary')}>Places</span>
             <span style={{cursor: 'pointer'}} onClick={() => scrollToSection('addons')}>Services</span>
             <button className="btn-cta" onClick={handlePlanTrip}>Plan My Trip</button>
           </nav>
+
+          {/* Mobile Navigation Menu */}
+          {mobileMenuOpen && (
+            <div className="mobile-nav">
+              <span onClick={() => scrollToSection('packages')}>Trips</span>
+              <span onClick={() => scrollToSection('itinerary')}>Places</span>
+              <span onClick={() => scrollToSection('addons')}>Services</span>
+              <button className="btn-cta" onClick={handlePlanTrip}>Plan My Trip</button>
+            </div>
+          )}
         </div>
 
         <div className="center">

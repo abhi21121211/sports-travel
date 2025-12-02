@@ -1,91 +1,106 @@
-# Sports Travel - Backend
+# Sports Travel Backend
 
-Express.js backend API for the Sports Travel application.
+This is the backend service for the Sports Travel Packages platform. It is built with Node.js, Express, and MongoDB.
+
+## Features
+
+- **Lead Management**: Capture and manage leads with status tracking.
+- **Event & Package Management**: Browse events and travel packages.
+- **Dynamic Quote Generation**: Calculate prices based on seasonal, early-bird, and other business rules.
+- **REST API**: Fully functional JSON API.
 
 ## Tech Stack
 
 - **Runtime**: Node.js
 - **Framework**: Express.js
-- **Middleware**: CORS, Body Parser
+- **Database**: MongoDB (Mongoose ODM)
+- **Testing**: Jest
+- **CI**: GitHub Actions
 
-## Getting Started
+## Setup Instructions
 
 ### Prerequisites
 
-- Node.js 18+
-- npm or yarn
+- Node.js (v18+)
+- MongoDB (running locally or cloud URI)
 
 ### Installation
 
-1. Install dependencies:
+1. Clone the repository.
+2. Navigate to the backend directory:
+   ```bash
+   cd sports-travel/backend
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Create a `.env` file (copy from `.env.example`):
+   ```bash
+   cp .env.example .env
+   ```
+   Update `MONGODB_URI` if necessary.
+
+### Running Locally
+
+1. Seed the database (optional but recommended):
+   ```bash
+   node scripts/seed.js
+   ```
+2. Start the server:
+   ```bash
+   npm run dev
+   ```
+   The server will run on `http://localhost:5001`.
+
+### Running Tests
+
 ```bash
-npm install
+npm test
 ```
 
-2. Create a `.env` file (optional):
-```
-PORT=5000
-```
-
-3. Run the development server:
-```bash
-npm run dev
-```
-
-Or run in production mode:
-```bash
-npm start
-```
-
-The server will start on `http://localhost:5000`
-
-## API Endpoints
-
-### Packages
-
-- `GET /api/packages` - Get all travel packages
-- `GET /api/packages/:id` - Get a specific package by ID
+## API Documentation
 
 ### Events
 
-- `GET /api/events` - Get all sports events
-- `GET /api/events/:id` - Get a specific event by ID
+- `GET /api/events`: List all events.
+- `GET /api/events/:id/packages`: List packages for a specific event.
 
 ### Leads
 
-- `POST /api/leads` - Submit a new lead/inquiry
+- `POST /api/leads`: Create a new lead.
   - Body: `{ name, email, phone, event, message }`
-- `GET /api/leads` - Get all leads (admin endpoint)
+- `GET /api/leads`: List leads (paginated).
+  - Query: `page`, `limit`, `status`, `event`, `month`
+- `PATCH /api/leads/:id/status`: Update lead status.
+  - Body: `{ status }`
 
-### Health Check
+### Quotes
 
-- `GET /` - API health check
+- `POST /api/quotes/generate`: Generate a quote.
+  - Body: `{ leadId, packageId, travellers }`
+  - Returns: Detailed pricing breakdown and updates lead status to "Quote Sent".
 
-## Project Structure
+## Deployment
 
-```
-backend/
-├── index.js         # Main server file with routes
-├── package.json     # Dependencies and scripts
-└── README.md        # Documentation
-```
+### Render / Railway / Heroku
 
-## Data Storage
+1. Push code to GitHub.
+2. Connect repository to the hosting provider.
+3. Set environment variables (`MONGODB_URI`).
+4. Set build command: `npm install`.
+5. Set start command: `npm start`.
 
-Currently using in-memory storage for leads. In production, integrate with a database like:
-- MongoDB
-- PostgreSQL
-- MySQL
+## Design Decisions & Trade-offs
 
-## Available Scripts
+- **MongoDB**: Chosen for flexibility with schema-less data (though Mongoose enforces schemas) and ease of development.
+- **Monolithic Structure**: Simple MVC structure for speed of delivery.
+- **Pricing Logic**: Implemented as a pure function service for easy testing.
 
-- `npm start` - Start production server
-- `npm run dev` - Start development server with nodemon
+## Future Improvements
 
-## CORS
-
-CORS is enabled for all origins in development. Configure appropriately for production.
-
-## License
-
-MIT
+- **Authentication**: Add JWT authentication for admin routes.
+- **Validation**: Use a library like Joi or Zod for robust request validation.
+- **Logging**: Integrate structured logging (e.g., Winston) and monitoring (e.g., Sentry).
+- **Caching**: Use Redis for caching event and package data.
+- **Swagger**: Auto-generate API documentation.

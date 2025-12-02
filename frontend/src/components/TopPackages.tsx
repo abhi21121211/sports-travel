@@ -60,11 +60,11 @@ export default function TopPackages() {
         if (data && data.length > 0) {
           // Map backend data to display format
           const mappedPackages = data.map((pkg: any) => ({
-            id: pkg.id,
+            id: pkg._id,
             title: pkg.title,
-            price: pkg.price,
+            price: `₹${pkg.price.toLocaleString()} pp`,
             image: pkg.image || 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80',
-            location: pkg.location || '',
+            location: pkg.event?.location || 'Unknown Location',
             duration: pkg.duration || '',
             description: pkg.description || ''
           }))
@@ -85,7 +85,7 @@ export default function TopPackages() {
     const contactSection = document.getElementById('contact')
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      
+
       // Try to pre-fill the form
       setTimeout(() => {
         const nameInput = document.getElementById('name') as HTMLInputElement
@@ -106,29 +106,29 @@ export default function TopPackages() {
     return fallbackImages[pkgId] || 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80'
   }
 
-console.log('fffffff:', packages);
+  console.log('fffffff:', packages);
   return (
     <section>
       <div className="section-head">
         <h2>Top Packages</h2>
-        <a className="muted" href="#packages" style={{cursor: 'pointer'}}>More packages →</a>
+        <a className="muted" href="#packages" style={{ cursor: 'pointer' }}>More packages →</a>
       </div>
 
       {loading ? (
-        <div style={{padding: '40px', textAlign: 'center', color: 'var(--muted)'}}>
+        <div style={{ padding: '40px', textAlign: 'center', color: 'var(--muted)' }}>
           Loading packages...
         </div>
       ) : (
         <div className="packages" role="list">
           {packages.map((pkg) => (
-            <article 
-              key={pkg.id} 
-              className="pkg" 
+            <article
+              key={pkg.id}
+              className="pkg"
               role="listitem"
             >
               <div className="thumb">
-                <img 
-                  src={pkg.image} 
+                <img
+                  src={pkg.image}
                   alt={pkg.title}
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
@@ -143,8 +143,8 @@ console.log('fffffff:', packages);
                 <strong>{pkg.title}</strong>
                 {pkg.location && (
                   <div className="pkg-location">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style={{marginRight: '4px'}}>
-                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style={{ marginRight: '4px' }}>
+                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                     </svg>
                     {pkg.location}
                   </div>
@@ -157,7 +157,7 @@ console.log('fffffff:', packages);
                     <span className="price-label">Starting from</span>
                     <span className="price-value">{pkg.price}</span>
                   </div>
-                  <button 
+                  <button
                     className="pkg-cta"
                     onClick={() => handlePackageClick(pkg)}
                     aria-label={`Book ${pkg.title}`}

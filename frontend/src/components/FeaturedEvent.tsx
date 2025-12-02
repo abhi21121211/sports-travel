@@ -1,4 +1,34 @@
+import { useState, useEffect } from 'react'
+import { getEvents } from '@/lib/api'
+
+interface Event {
+  _id: string
+  name: string
+  description: string
+  image: string
+  featured: boolean
+}
+
 export default function FeaturedEvent() {
+  const [event, setEvent] = useState<Event | null>(null)
+
+  useEffect(() => {
+    const fetchFeaturedEvent = async () => {
+      try {
+        const events = await getEvents()
+        const featured = events.find((e: Event) => e.featured)
+        if (featured) {
+          setEvent(featured)
+        }
+      } catch (error) {
+        console.error('Error fetching featured event:', error)
+      }
+    }
+    fetchFeaturedEvent()
+  }, [])
+
+  if (!event) return null
+
   return (
     <section id="events" className="py-16 bg-primary text-white">
       <div className="container mx-auto px-4">
@@ -8,36 +38,52 @@ export default function FeaturedEvent() {
               Featured Event
             </span>
             <h2 className="text-4xl font-bold mt-4 mb-6">
-              UEFA Champions League Final 2024
+              {event.name}
             </h2>
             <p className="text-lg mb-6 text-blue-100">
-              Experience the pinnacle of European football with our exclusive VIP package. 
-              Premium seats, luxury accommodation, and guided tours of historic London.
+              {event.description}
             </p>
             <ul className="space-y-3 mb-8">
               <li className="flex items-center">
                 <span className="mr-3">✓</span>
-                Category 1 Match Tickets
+                Premium Experience
               </li>
               <li className="flex items-center">
                 <span className="mr-3">✓</span>
-                5-Star Hotel Accommodation
+                Luxury Accommodation
               </li>
               <li className="flex items-center">
                 <span className="mr-3">✓</span>
-                Airport Transfers & City Tours
-              </li>
-              <li className="flex items-center">
-                <span className="mr-3">✓</span>
-                Pre-Match Hospitality Experience
+                Exclusive Access
               </li>
             </ul>
-            <button className="bg-secondary text-white px-8 py-3 rounded-lg font-semibold hover:bg-yellow-600 transition">
-              Book This Package
+            <button
+              className="bg-secondary text-white px-8 py-3 rounded-lg font-semibold hover:bg-yellow-600 transition"
+              onClick={() => {
+                const contactSection = document.getElementById('contact')
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
+            >
+              Book This Event
             </button>
           </div>
-          <div className="bg-blue-700 rounded-lg p-8 h-96 flex items-center justify-center">
-            <p className="text-2xl">Event Image Placeholder</p>
+          <div className="rounded-lg overflow-hidden h-96 flex items-center justify-center bg-blue-800">
+            {event.image ? (
+              <img
+                src={event.image}
+                alt={event.name}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  target.parentElement!.innerHTML = '<p class="text-2xl text-white">Image Not Available</p>';
+                }}
+              />
+            ) : (
+              <p className="text-2xl">Event Image Placeholder</p>
+            )}
           </div>
         </div>
       </div>

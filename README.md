@@ -5,7 +5,7 @@ A responsive, functional landing page for our Sports Travel Package platform, bu
 ## 🚀 Live Demo
 
 - **Frontend**: https://sports-travel.vercel.app
-- **Backend API**: Running on `http://localhost:5001`
+- **Backend API**: Running on https://sports-travel.onrender.com and `http://localhost:5001`
 
 ## 📋 Table of Contents
 

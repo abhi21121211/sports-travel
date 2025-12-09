@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@abhi21121211/project-pa-cli": "^1.1.46",
     "axios": "^1.13.2",
     "next": "14.0.0",
     "react": "18.2.0",

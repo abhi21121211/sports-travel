@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "project": "Sports Travel Platform",
+    "author": "Abhishek Dukare",
+    "description": "Full-stack sports travel booking platform built with Next.js, TypeScript, and Express.js featuring responsive design, API integration, and modern UI/UX",
+    "techStack": [
+      "Next.js 14",
+      "React",
+      "TypeScript",
+      "Express.js",
+      "Node.js",
+      "REST API",
+      "Custom CSS",
+      "Axios"
+    ],
+    "entryUrl": "/",
+    "uniqueId": "sports-travel-landing-page-17s2t2"
+  },
+  "steps": [
+    {
+      "id": "welcome",
+      "type": "popup",
+      "page": "/",
+      "target": "body",
+      "content": "Welcome! I am Abhishek Dukare, a Full-Stack Developer. Let me walk you through this Sports Travel Platform I built using Next.js, TypeScript, and Express.js.",
+      "duration": 12000
+    },
+    {
+      "id": "hero-overview",
+      "type": "highlight",
+      "page": "/",
+      "target": ".hero",
+      "content": "This is the Hero Section. It features a responsive navigation bar with smooth scroll links, a mobile hamburger menu built with React state management, and a bold headline. The Plan My Trip button scrolls users to the contact form.",
+      "duration": 17000
+    },
+    {
+      "id": "navigation",
+      "type": "highlight",
+      "page": "/",
+      "target": ".topbar",
+      "content": "Here is the Responsive Navigation. On desktop, it shows navigation links with smooth scrolling using the scroll into view API. On mobile, the menu toggles with a hamburger icon. All built with React hooks for seamless user experience.",
+      "duration": 17000
+    },
+    {
+      "id": "cta-button",
+      "type": "highlight",
+      "page": "/",
+      "target": ".btn-cta",
+      "content": "This is the primary Call-to-Action Button. It is styled with custom CSS and features hover animations. When clicked, it smoothly scrolls the page to the contact form section.",
+      "duration": 12000
+    },
+    {
+      "id": "featured-card",
+      "type": "highlight",
+      "page": "/",
+      "target": ".feature-wrap",
+      "content": "This is the Featured Event Card with an overlapping design created using CSS positioning. The background uses a linear gradient overlay. Click handlers pre-fill the contact form with package details, demonstrating state management skills.",
+      "duration": 17000
+    },
+    {
+      "id": "whatsapp-integration",
+      "type": "highlight",
+      "page": "/",
+      "target": ".whatsapp-float",
+      "content": "Here is the WhatsApp Integration. This floating button has a pulse animation built with CSS keyframes. It opens WhatsApp with a pre-filled message using the WhatsApp API. This demonstrates third-party integration capabilities.",
+      "duration": 16000
+    },
+    {
+      "id": "packages-section",
+      "type": "highlight",
+      "page": "/",
+      "target": "#packages",
+      "content": "These are the Package Cards, which are API-driven. Data is fetched from an Express.js backend using Axios. The component includes loading states, error handling with fallback data, and image error fallbacks. This is production-ready code.",
+      "duration": 18000
+    },
+    {
+      "id": "package-card",
+      "type": "highlight",
+      "page": "/",
+      "target": ".packages",
+      "content": "Each card follows a reusable component architecture with TypeScript interfaces for type safety. Cards display formatted prices, location badges, hover animations, and Book Now buttons that scroll to the contact form.",
+      "duration": 14000
+    },
+    {
+      "id": "why-choose-us",
+      "type": "highlight",
+      "page": "/",
+      "target": ".why-choose-us",
+      "content": "This is the Trust Section with statistics. It uses CSS Grid layout for responsive display. Features include SVG icons, animated counters, and feature cards. The visual hierarchy helps build credibility with potential customers.",
+      "duration": 14000
+    },
+    {
+      "id": "stats-section",
+      "type": "highlight",
+      "page": "/",
+      "target": ".stats-section",
+      "content": "The Stats Display shows key metrics: over 500 events covered, more than 10,000 happy travelers, over 50 countries covered, and a 4.9 out of 5 customer rating. The responsive grid adapts from 4 columns on desktop to 2 columns on mobile.",
+      "duration": 17000
+    },
+    {
+      "id": "addons-section",
+      "type": "highlight",
+      "page": "/",
+      "target": "#addons",
+      "content": "This is the Add-ons Section featuring premium VIP experiences. Each add-on is displayed with a card design. CSS Grid handles the responsive layout. Each card includes an image, title, and hover effects.",
+      "duration": 12000
+    },
+    {
+      "id": "lead-form",
+      "type": "highlight",
+      "page": "/",
+      "target": "#contact",
+      "content": "Here is the Lead Capture Form with full-stack integration. It connects to the Express.js backend at the leads API endpoint. Features include client-side validation, TypeScript types, loading states, and success or error handling.",
+      "duration": 14000
+    },
+    {
+      "id": "form-validation",
+      "type": "highlight",
+      "page": "/",
+      "target": ".modern-form",
+      "content": "The Form Validation runs in real-time using regex patterns for email and phone fields. Error states provide visual feedback. Required fields are marked. All inputs are built with React controlled components.",
+      "duration": 14000
+    },
+    {
+      "id": "footer",
+      "type": "highlight",
+      "page": "/",
+      "target": "footer",
+      "content": "The Footer Component includes social media icons for Facebook, Twitter, and Instagram, all built with SVG. Quick links provide navigation. The design is clean and professional with proper spacing.",
+      "duration": 12000
+    },
+    {
+      "id": "responsive-design",
+      "type": "popup",
+      "page": "/",
+      "target": "body",
+      "content": "This project uses a mobile-first responsive design approach. The CSS includes 7 breakpoints ranging from 360 pixels to over 1100 pixels. Features include collapsible navigation, fluid grids, and optimized touch targets. It works seamlessly on all devices.",
+      "duration": 17000
+    },
+    {
+      "id": "tech-architecture",
+      "type": "popup",
+      "page": "/",
+      "target": "body",
+      "content": "The architecture includes a Next.js 14 frontend with TypeScript for type safety. The backend is built with Express.js as a REST API. Axios handles HTTP calls. Custom CSS was used instead of Tailwind for complete styling control.",
+      "duration": 14000
+    },
+    {
+      "id": "api-endpoints",
+      "type": "popup",
+      "page": "/",
+      "target": "body",
+      "content": "The API includes several endpoints: GET packages for listing all packages, GET events for populating the dropdown, POST leads for form submission, and GET leads for admin access. These demonstrate full CRUD operations.",
+      "duration": 16000
+    },
+    {
+      "id": "code-quality",
+      "type": "popup",
+      "page": "/",
+      "target": "body",
+      "content": "Code quality highlights include TypeScript interfaces for type safety, React hooks like useState and useEffect, component-based architecture for reusability, and proper error handling with fallback mechanisms.",
+      "duration": 12000
+    },
+    {
+      "id": "conclusion",
+      "type": "popup",
+      "page": "/",
+      "target": "body",
+      "content": "Thank you for watching this project walkthrough! This platform demonstrates skills in React and Next.js, TypeScript, REST APIs, form validation, responsive design, and modern UI and UX practices. I look forward to connecting with you!",
+      "duration": 16000
+    }
+  ]
+}
